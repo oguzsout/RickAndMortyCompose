@@ -1,4 +1,4 @@
-package com.oguzdogdu.rickandmortycompose.presentation.characters
+package com.oguzdogdu.rickandmortycompose.presentation.character.characters
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -14,14 +14,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun CharactersScreen(
-    viewModel: CharacterViewModel = hiltViewModel()
+    viewModel: CharacterViewModel = hiltViewModel(),
+    navigateToCharacterDetail: (Int) -> Unit,
 ) {
     val state = viewModel.state.value
 
     Box {
         Column(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(top = 8.dp), horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -29,8 +29,10 @@ fun CharactersScreen(
                 columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(8.dp)
             ) {
-                items(state.characters) {
-                    CharacterItem(characters = it)
+                items(state.characters) { character ->
+                    CharacterItem(character = character, onItemClick = {
+                        navigateToCharacterDetail.invoke(it)
+                    })
                 }
             }       
         }
@@ -40,7 +42,7 @@ fun CharactersScreen(
         if (state.isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center),
-                color = Color.White
+                color = Color.Black
             )
         }
     }

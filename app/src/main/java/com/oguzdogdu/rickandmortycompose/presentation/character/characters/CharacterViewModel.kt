@@ -1,4 +1,4 @@
-package com.oguzdogdu.rickandmortycompose.presentation.characters
+package com.oguzdogdu.rickandmortycompose.presentation.character.characters
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

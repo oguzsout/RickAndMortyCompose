@@ -1,11 +1,11 @@
-package com.oguzdogdu.rickandmortycompose.presentation.characters
+package com.oguzdogdu.rickandmortycompose.presentation.character.characters
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,13 +19,16 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.oguzdogdu.rickandmortycompose.R
-import com.oguzdogdu.rickandmortycompose.domain.model.Characters
+import com.oguzdogdu.rickandmortycompose.domain.model.Character
 
 @Composable
-fun CharacterItem(characters: Characters) {
+fun CharacterItem(character: Character, onItemClick: (Int) -> Unit) {
     val context = LocalContext.current
     Card(
         modifier = Modifier
+            .clickable {
+                character.id?.let { onItemClick(it) }
+            }
             .background(Color.White)
             .padding(8.dp), shape = RoundedCornerShape(8.dp)
     ) {
@@ -37,7 +40,7 @@ fun CharacterItem(characters: Characters) {
                 AsyncImage(
                     alignment = Alignment.CenterStart,
                     model = ImageRequest.Builder(context)
-                        .data(characters.image)
+                        .data(character.image)
                         .crossfade(true)
                         .build(),
                     contentDescription = stringResource(R.string.app_name),
@@ -48,17 +51,19 @@ fun CharacterItem(characters: Characters) {
                         }
                         .fillMaxSize()
                 )
-                Text(
-                    text = characters.name,
-                    color = Color.Black,
-                    maxLines = 1,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .constrainAs(text) {
-                            top.linkTo(image.bottom, margin = 16.dp)
-                        }
-                        .fillMaxSize()
-                        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp))
+                character.name?.let {
+                    Text(
+                        text = it,
+                        color = Color.Black,
+                        maxLines = 1,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .constrainAs(text) {
+                                top.linkTo(image.bottom, margin = 16.dp)
+                            }
+                            .fillMaxSize()
+                            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp))
+                }
             }
         }
     }
