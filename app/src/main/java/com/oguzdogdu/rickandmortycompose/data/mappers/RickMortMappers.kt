@@ -1,9 +1,10 @@
 package com.oguzdogdu.rickandmortycompose.data.mappers
 
-import com.oguzdogdu.rickandmortycompose.data.model.Result
-import com.oguzdogdu.rickandmortycompose.domain.model.Characters
+import com.oguzdogdu.rickandmortycompose.data.model.characters.Result
+import com.oguzdogdu.rickandmortycompose.domain.model.Character
+import com.oguzdogdu.rickandmortycompose.domain.model.CharacterDetails
 
-fun Result.toCharacters() = Characters(
+fun Result.toCharacters() = Character(
     id = id,
     image = image,
     name = name,

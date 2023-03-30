@@ -1,4 +1,4 @@
-package com.oguzdogdu.rickandmortycompose.data.model
+package com.oguzdogdu.rickandmortycompose.data.model.detail
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

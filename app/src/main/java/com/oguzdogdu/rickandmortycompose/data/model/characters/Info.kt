@@ -1,4 +1,4 @@
-package com.oguzdogdu.rickandmortycompose.data.model
+package com.oguzdogdu.rickandmortycompose.data.model.characters
 
 data class Info(
     val count: Int,
