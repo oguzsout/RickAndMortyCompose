@@ -1,20 +1,17 @@
 package com.oguzdogdu.rickandmortycompose.presentation.character.characters
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oguzdogdu.rickandmortycompose.common.Resource
 import com.oguzdogdu.rickandmortycompose.domain.usecase.GetCharactersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class CharacterViewModel @Inject constructor(private val useCase: GetCharactersUseCase):ViewModel() {
-    private val _state = mutableStateOf(CharactersState())
-    val state: State<CharactersState> = _state
+    private val _state = MutableStateFlow(CharactersState())
+    val state: StateFlow<CharactersState> = _state
 
     init {
         getCharacters()

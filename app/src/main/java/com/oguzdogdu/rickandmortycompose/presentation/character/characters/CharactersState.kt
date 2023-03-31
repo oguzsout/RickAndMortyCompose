@@ -1,5 +1,6 @@
 package com.oguzdogdu.rickandmortycompose.presentation.character.characters
 
+import androidx.paging.PagingData
 import com.oguzdogdu.rickandmortycompose.domain.model.Character
 
 data class CharactersState(

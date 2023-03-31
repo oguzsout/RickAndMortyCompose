@@ -1,10 +1,12 @@
 package com.oguzdogdu.rickandmortycompose.domain.usecase
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.oguzdogdu.rickandmortycompose.common.Resource
 import com.oguzdogdu.rickandmortycompose.data.mappers.toCharacters
 import com.oguzdogdu.rickandmortycompose.domain.model.Character
 import com.oguzdogdu.rickandmortycompose.domain.repository.RickMortyRepository
-import com.oguzdogdu.rickandmortycompose.navigation.Screens
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

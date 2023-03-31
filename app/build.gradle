@@ -104,4 +104,6 @@ dependencies {
 
     //Pager
     implementation 'com.google.accompanist:accompanist-pager:0.26.1-alpha'
+
+    implementation "androidx.paging:paging-compose:1.0.0-alpha18"
 }

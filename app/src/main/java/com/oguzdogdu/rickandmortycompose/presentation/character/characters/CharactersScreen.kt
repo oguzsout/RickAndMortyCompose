@@ -1,14 +1,14 @@
 package com.oguzdogdu.rickandmortycompose.presentation.character.characters
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
@@ -17,7 +17,7 @@ fun CharactersScreen(
     viewModel: CharacterViewModel = hiltViewModel(),
     navigateToCharacterDetail: (Int) -> Unit,
 ) {
-    val state = viewModel.state.value
+    val state = viewModel.state.collectAsState()
 
     Box {
         Column(
@@ -29,21 +29,12 @@ fun CharactersScreen(
                 columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(8.dp)
             ) {
-                items(state.characters) { character ->
+                items(state.value.characters) { character ->
                     CharacterItem(character = character, onItemClick = {
                         navigateToCharacterDetail.invoke(it)
                     })
                 }
             }       
-        }
-
-        if (state.error.isNotBlank())
-
-        if (state.isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center),
-                color = Color.Black
-            )
         }
     }
 }

@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface RickAndMortyService {
 
     @GET("character")
-    suspend fun getCharacterList(@Query("page") page: Int = PAGE_ITEM_LIMIT): RickMortyResponse
+    suspend fun getCharacterList(): RickMortyResponse
 
     @GET("character/{id}")
     suspend fun getCharacterById(@Path("id") id: Int?): RickMortDetail

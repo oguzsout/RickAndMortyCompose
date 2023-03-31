@@ -1,8 +1,9 @@
 package com.oguzdogdu.rickandmortycompose.presentation.character.characters
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -16,6 +17,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintLayoutScope
+import androidx.paging.PagingData
+import androidx.paging.filter
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.oguzdogdu.rickandmortycompose.R
@@ -26,9 +30,6 @@ fun CharacterItem(character: Character, onItemClick: (Int) -> Unit) {
     val context = LocalContext.current
     Card(
         modifier = Modifier
-            .clickable {
-                character.id?.let { onItemClick(it) }
-            }
             .background(Color.White)
             .padding(8.dp), shape = RoundedCornerShape(8.dp)
     ) {
